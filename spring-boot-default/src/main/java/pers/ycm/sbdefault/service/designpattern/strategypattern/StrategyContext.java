@@ -3,7 +3,7 @@ package pers.ycm.sbdefault.service.designpattern.strategypattern;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pers.ycm.sbdefault.common.exception.BizException;
-import pers.ycm.sbdefault.common.exception.enums.CodeEnum;
+import pers.ycm.sbdefault.common.enums.CodeEnum;
 
 import java.util.Map;
 import java.util.Optional;

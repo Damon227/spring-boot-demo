@@ -1,6 +1,6 @@
 package pers.ycm.sbdefault.common.exception;
 
-import pers.ycm.sbdefault.common.exception.enums.CodeEnum;
+import pers.ycm.sbdefault.common.enums.CodeEnum;
 
 /**
  * @author yuanchengman

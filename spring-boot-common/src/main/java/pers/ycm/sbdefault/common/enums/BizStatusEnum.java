@@ -1,4 +1,4 @@
-package pers.ycm.sbdefault.common.exception.enums;
+package pers.ycm.sbdefault.common.enums;
 
 /**
  * 数据状态枚举

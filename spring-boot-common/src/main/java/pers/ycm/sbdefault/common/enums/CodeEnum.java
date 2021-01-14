@@ -1,4 +1,4 @@
-package pers.ycm.sbdefault.common.exception.enums;
+package pers.ycm.sbdefault.common.enums;
 
 /**
  * 错误码枚举<br/>
