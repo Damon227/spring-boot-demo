@@ -1,4 +1,4 @@
-package pers.ycm.common.enums;
+package pers.ycm.sbdefault.common.exception.enums;
 
 import java.util.EnumSet;
 import java.util.Objects;

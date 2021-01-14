@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="warn" monitorInterval="30">
+    <!--先定义所有的appender-->
+    <appenders>
+        <!--这个输出控制台的配置-->
+        <console name="Console" target="SYSTEM_OUT">
+            <!--输出日志的格式-->
+            <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
+        </console>
+<!--        <JDBC name="DBAppender" tableName="error_log_crm_risk_mp">-->
+<!--            <ConnectionFactory-->
+<!--                    class="com.jdd.mallcoo.risk.control.common.log.ConnectionFactory"-->
+<!--                    method="getDatabaseConnection" />-->
+<!--            &lt;!&ndash; 方法名 &ndash;&gt;-->
+<!--            <Column name="log_function" pattern="%M" />-->
+<!--            <Column name="log_line" pattern="%line" />-->
+<!--            <Column name="log_thread" pattern="%thread" />-->
+<!--            &lt;!&ndash; 日志级别 &ndash;&gt;-->
+<!--            <Column name="log_level" pattern="%level" />-->
+<!--            &lt;!&ndash; 类 &ndash;&gt;-->
+<!--            <Column name="log_class" pattern="%c" />-->
+<!--            &lt;!&ndash; 日志内容 &ndash;&gt;-->
+<!--            <Column name="log_message" pattern="%message" />-->
+<!--            &lt;!&ndash; 日志异常 &ndash;&gt;-->
+<!--            <Column name="log_ex" pattern="%ex" />-->
+<!--            &lt;!&ndash; 时间 &ndash;&gt;-->
+<!--            <Column name="create_date" pattern="%d{yyyy-MM-dd hh:mm:ss}" />-->
+<!--        </JDBC>-->
+<!--        <Async name="Async">-->
+<!--            <AppenderRef ref="DBAppender"/>-->
+<!--        </Async>-->
+    </appenders>
+
+    <loggers>
+        <root level="INFO">
+            <appender-ref ref="Console"/>
+<!--            <appender-ref ref="Async" level="ERROR"/>-->
+        </root>
+    </loggers>
+</configuration>
