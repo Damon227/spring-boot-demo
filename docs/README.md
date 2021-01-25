@@ -20,5 +20,7 @@
 
 2. ##### 责任链模式
 
- 
+### 数据脱敏
+#### 1. 用 fastjson ValueFilter
+#### 2. 用 jackson ContextualSerializer
 

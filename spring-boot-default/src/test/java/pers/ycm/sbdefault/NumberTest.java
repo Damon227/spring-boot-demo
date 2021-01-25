@@ -34,4 +34,15 @@ public class NumberTest {
         Long age = 20L;
         System.out.println(age.equals(id));
     }
+
+    @Test
+    public void test3(){
+        BigDecimal b1 = null;
+        BigDecimal b2 = BigDecimal.valueOf(123);
+        System.out.println(b2.add(b1));
+        // b1 = null NPE
+//        System.out.println(b2.subtract(b1));
+        // b1 = null NPE
+//        System.out.println(b1.subtract(BigDecimal.valueOf(1)));
+    }
 }

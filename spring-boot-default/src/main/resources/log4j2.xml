@@ -7,6 +7,12 @@
             <!--输出日志的格式-->
             <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
         </console>
+        <!--默认保存7个文件-->
+        <RollingFile name="RollingFile" fileName="/mnt/myapp/logs/app.log"
+                     filePattern="/mnt/myapp/logs/$${date:yyyy-MM}/mphost-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <SizeBasedTriggeringPolicy size="10MB"/>
+        </RollingFile>
 <!--        <JDBC name="DBAppender" tableName="error_log_crm_risk_mp">-->
 <!--            <ConnectionFactory-->
 <!--                    class="com.jdd.mallcoo.risk.control.common.log.ConnectionFactory"-->
@@ -34,6 +40,7 @@
     <loggers>
         <root level="INFO">
             <appender-ref ref="Console"/>
+            <appender-ref ref="RollingFile"/>
 <!--            <appender-ref ref="Async" level="ERROR"/>-->
         </root>
     </loggers>
