@@ -3,17 +3,21 @@ package pers.ycm.sbdefault.pojo.dto;
 import pers.ycm.sbdefault.annotation.Desensitized;
 import pers.ycm.sbdefault.common.enums.SensitiveTypeEnum;
 
-import java.util.List;
+import java.math.BigDecimal;
 
 /**
  * @author yuanchengman
  * @date 2021-01-25
  */
-public class StudentDTO {
+public class Book {
     @Desensitized(type = SensitiveTypeEnum.CHINESE_NAME)
     private String name;
-    private int gender;
-    private List<Book> books;
+    private BigDecimal price;
+
+    public Book(String name, BigDecimal price) {
+        this.name = name;
+        this.price = price;
+    }
 
     public String getName() {
         return name;
@@ -23,19 +27,11 @@ public class StudentDTO {
         this.name = name;
     }
 
-    public int getGender() {
-        return gender;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setGender(int gender) {
-        this.gender = gender;
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }
