@@ -36,7 +36,7 @@ public class DesensitizedUtils {
     }
 
     /**
-     * 【固定电话 后四位，其他隐藏，比如1234
+     * 【固定电话】 后四位，其他隐藏，比如1234
      *
      * @param num
      * @return

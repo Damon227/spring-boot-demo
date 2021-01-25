@@ -21,7 +21,7 @@ public class SensitiveDataController {
         StudentDTO dto = new StudentDTO();
         dto.setName("失也好二");
         dto.setBooks(ListUtil.of(
-                new Book("语言", BigDecimal.valueOf(11)),
+                new Book("语文", BigDecimal.valueOf(11)),
                 new Book("英语", BigDecimal.valueOf(12))));
         return dto;
     }

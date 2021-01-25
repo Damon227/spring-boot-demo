@@ -59,6 +59,8 @@ public class DesensitizedSerializer extends JsonSerializer<String> implements Co
                 jsonGenerator.writeString(DesensitizedUtils.bankCard(s));
                 break;
             }
+            default:
+                break;
         }
     }
 
@@ -66,7 +68,8 @@ public class DesensitizedSerializer extends JsonSerializer<String> implements Co
     public JsonSerializer<?> createContextual(SerializerProvider serializerProvider, BeanProperty beanProperty) throws JsonMappingException {
         // 为空直接跳过
         if (beanProperty != null) {
-            if (Objects.equals(beanProperty.getType().getRawClass(), String.class)) { // 非 String 类直接跳过
+            // 非 String 类直接跳过
+            if (Objects.equals(beanProperty.getType().getRawClass(), String.class)) {
                 Desensitized desensitized = beanProperty.getAnnotation(Desensitized.class);
                 if (desensitized == null) {
                     desensitized = beanProperty.getContextAnnotation(Desensitized.class);
@@ -77,8 +80,10 @@ public class DesensitizedSerializer extends JsonSerializer<String> implements Co
                     return new DesensitizedSerializer(desensitized.type());
                 }
             }
+
             return serializerProvider.findValueSerializer(beanProperty.getType(), beanProperty);
         }
+
         return serializerProvider.findNullValueSerializer(beanProperty);
     }
 }
