@@ -8,10 +8,24 @@
             <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
         </console>
         <!--默认保存7个文件-->
-        <RollingFile name="RollingFile" fileName="/mnt/myapp/logs/app.log"
-                     filePattern="/mnt/myapp/logs/$${date:yyyy-MM}/mphost-%d{yyyy-MM-dd}-%i.log.gz">
+        <RollingFile name="CommonLog" fileName="/mnt/myapp/logs/common.log"
+                     filePattern="/mnt/myapp/logs/$${date:yyyy-MM}/common-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
             <SizeBasedTriggeringPolicy size="10MB"/>
+            <Filters>
+                <!--不记录ERROR级别日志-->
+                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
+            </Filters>
+        </RollingFile>
+        <!--默认保存7个文件-->
+        <RollingFile name="ErrorLog" fileName="/mnt/myapp/logs/error.log"
+                     filePattern="/mnt/myapp/logs/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <SizeBasedTriggeringPolicy size="10MB"/>
+            <Filters>
+                <!--只记录ERROR级别日志-->
+                <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            </Filters>
         </RollingFile>
 <!--        <JDBC name="DBAppender" tableName="error_log_crm_risk_mp">-->
 <!--            <ConnectionFactory-->
@@ -40,7 +54,8 @@
     <loggers>
         <root level="INFO">
             <appender-ref ref="Console"/>
-            <appender-ref ref="RollingFile"/>
+            <appender-ref ref="CommonLog"/>
+            <appender-ref ref="ErrorLog"/>
 <!--            <appender-ref ref="Async" level="ERROR"/>-->
         </root>
     </loggers>

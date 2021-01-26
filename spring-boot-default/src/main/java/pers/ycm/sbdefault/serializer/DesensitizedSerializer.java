@@ -9,7 +9,9 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.ContextualSerializer;
 import pers.ycm.sbdefault.annotation.Desensitized;
 import pers.ycm.sbdefault.common.enums.SensitiveTypeEnum;
+import pers.ycm.sbdefault.config.BeanContext;
 import pers.ycm.sbdefault.formatter.DesensitizedUtils;
+import pers.ycm.sbdefault.service.UserService;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -23,6 +25,8 @@ import java.util.Objects;
 public class DesensitizedSerializer extends JsonSerializer<String> implements ContextualSerializer {
     private SensitiveTypeEnum typeEnum;
 
+    private UserService userService;
+
     public DesensitizedSerializer() {
     }
 
@@ -30,8 +34,14 @@ public class DesensitizedSerializer extends JsonSerializer<String> implements Co
         this.typeEnum = typeEnum;
     }
 
+    public DesensitizedSerializer(SensitiveTypeEnum typeEnum, UserService userService) {
+        this(typeEnum);
+        this.userService = userService;
+    }
+
     @Override
     public void serialize(String s, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
+        System.out.println(this.userService.getCurrent());
         switch (this.typeEnum) {
             case CHINESE_NAME: {
                 jsonGenerator.writeString(DesensitizedUtils.chineseName(s));
@@ -79,7 +89,8 @@ public class DesensitizedSerializer extends JsonSerializer<String> implements Co
 
                 // 如果能得到注解，就将注解的 value 传入 SensitiveInfoSerialize
                 if (desensitized != null) {
-                    return new DesensitizedSerializer(desensitized.type());
+                    UserService userService = BeanContext.getBean(UserService.class);
+                    return new DesensitizedSerializer(desensitized.type(), userService);
                 }
             }
 
