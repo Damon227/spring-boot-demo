@@ -1,5 +1,6 @@
 package pers.ycm.sbdefault.pojo.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import pers.ycm.sbdefault.annotation.Desensitized;
 import pers.ycm.sbdefault.annotation.Zero2Null;
 import pers.ycm.sbdefault.common.enums.SensitiveTypeEnum;

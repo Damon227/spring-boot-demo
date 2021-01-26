@@ -22,7 +22,7 @@ public class DesensitizedUtils {
     }
 
     /**
-     * 【身份证号】显示最后四位，其他隐藏。共计18位或者15位，比如：*************1234
+     * 【身份证号】显示前三位和最后四位，其他隐藏。共计18位或者15位，比如：500**********1234
      *
      * @param id
      * @return
@@ -31,8 +31,10 @@ public class DesensitizedUtils {
         if (StringUtils.isBlank(id)) {
             return "";
         }
-        String num = StringUtils.right(id, 4);
-        return StringUtils.leftPad(num, StringUtils.length(id), "*");
+        if(StringUtils.length(id) <= 7){
+            return id;
+        }
+        return StringUtils.left(id, 3).concat(StringUtils.removeStart(StringUtils.leftPad(StringUtils.right(id, 4), StringUtils.length(id), "*"), "***"));
     }
 
     /**
@@ -65,15 +67,15 @@ public class DesensitizedUtils {
      * 【地址】只显示到地区，不显示详细地址，比如：北京市海淀区****
      *
      * @param address
-     * @param sensitiveSize 敏感信息长度
+     * @param displaySize 展示长度
      * @return
      */
-    public static String address(String address, int sensitiveSize) {
+    public static String address(String address, int displaySize) {
         if (StringUtils.isBlank(address)) {
             return "";
         }
         int length = StringUtils.length(address);
-        return StringUtils.rightPad(StringUtils.left(address, length - sensitiveSize), length, "*");
+        return StringUtils.rightPad(StringUtils.left(address, displaySize), length, "*");
     }
 
     /**
@@ -87,10 +89,10 @@ public class DesensitizedUtils {
             return "";
         }
         int index = StringUtils.indexOf(email, "@");
-        if (index <= 1) {
-            return email;
+        if (index <= 3) {
+            return StringUtils.rightPad(StringUtils.left(email, index), index + 3, "*").concat(StringUtils.mid(email, index, StringUtils.length(email)));
         } else {
-            return StringUtils.rightPad(StringUtils.left(email, 1), index, "*").concat(StringUtils.mid(email, index, StringUtils.length(email)));
+            return StringUtils.rightPad(StringUtils.left(email, 3), index, "*").concat(StringUtils.mid(email, index, StringUtils.length(email)));
         }
     }
 
@@ -131,8 +133,8 @@ public class DesensitizedUtils {
         if (StringUtils.isBlank(carNumber)) {
             return "";
         }
-        return StringUtils.left(carNumber, 2).
-                concat(StringUtils.removeStart(StringUtils.leftPad(StringUtils.right(carNumber, 1), StringUtils.length(carNumber), "*"), "**"));
+        return StringUtils.left(carNumber, 3).
+                concat(StringUtils.removeStart(StringUtils.leftPad(StringUtils.right(carNumber, 1), StringUtils.length(carNumber), "*"), "***"));
 
     }
 
