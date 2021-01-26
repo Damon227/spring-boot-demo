@@ -1,7 +1,7 @@
 package pers.ycm.sbdefault;
 
 import org.junit.Test;
-import pers.ycm.sbdefault.formatter.DesensitizedUtils;
+import pers.ycm.sbdefault.desensitized.DesensitizedUtils;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

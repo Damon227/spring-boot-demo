@@ -1,6 +1,6 @@
 package pers.ycm.sbdefault.pojo.dto;
 
-import pers.ycm.sbdefault.annotation.Desensitized;
+import pers.ycm.sbdefault.desensitized.Desensitized;
 import pers.ycm.sbdefault.common.enums.SensitiveTypeEnum;
 
 import java.math.BigDecimal;

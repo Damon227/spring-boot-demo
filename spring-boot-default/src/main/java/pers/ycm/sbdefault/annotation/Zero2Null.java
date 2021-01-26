@@ -2,7 +2,7 @@ package pers.ycm.sbdefault.annotation;
 
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import pers.ycm.sbdefault.serializer.DesensitizedSerializer;
+import pers.ycm.sbdefault.desensitized.DesensitizedSerializer;
 
 import java.lang.annotation.*;
 

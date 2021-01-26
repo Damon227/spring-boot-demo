@@ -3,7 +3,7 @@ package pers.ycm.sbdefault.formatter;
 import org.springframework.format.AnnotationFormatterFactory;
 import org.springframework.format.Parser;
 import org.springframework.format.Printer;
-import pers.ycm.sbdefault.annotation.Desensitized;
+import pers.ycm.sbdefault.desensitized.Desensitized;
 
 import java.util.HashSet;
 import java.util.Set;

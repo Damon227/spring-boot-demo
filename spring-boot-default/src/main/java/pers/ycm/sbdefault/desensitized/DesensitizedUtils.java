@@ -1,4 +1,4 @@
-package pers.ycm.sbdefault.formatter;
+package pers.ycm.sbdefault.desensitized;
 
 import org.apache.commons.lang.StringUtils;
 

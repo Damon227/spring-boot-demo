@@ -1,4 +1,4 @@
-package pers.ycm.sbdefault.serializer;
+package pers.ycm.sbdefault.desensitized;
 
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -7,10 +7,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.ContextualSerializer;
-import pers.ycm.sbdefault.annotation.Desensitized;
 import pers.ycm.sbdefault.common.enums.SensitiveTypeEnum;
 import pers.ycm.sbdefault.config.BeanContext;
-import pers.ycm.sbdefault.formatter.DesensitizedUtils;
 import pers.ycm.sbdefault.service.UserService;
 
 import java.io.IOException;
