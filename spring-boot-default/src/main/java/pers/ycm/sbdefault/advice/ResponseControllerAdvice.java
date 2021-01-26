@@ -9,7 +9,7 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
-import pers.ycm.sbdefault.annotation.ZeroToNull;
+import pers.ycm.sbdefault.annotation.Zero2Null;
 import pers.ycm.sbdefault.common.vo.ResultVO;
 
 import java.lang.reflect.Field;
@@ -80,7 +80,7 @@ public class ResponseControllerAdvice implements ResponseBodyAdvice<Object> {
                         for (Object obj2 : list) {
                             zeroToNullCore(obj2);
                         }
-                    } else if (field.isAnnotationPresent(ZeroToNull.class)) {
+                    } else if (field.isAnnotationPresent(Zero2Null.class)) {
                         if (type.equals(Integer.class)) {
                             field.setAccessible(true);
                             Integer val = (Integer) field.get(obj);
@@ -124,7 +124,7 @@ public class ResponseControllerAdvice implements ResponseBodyAdvice<Object> {
                     for (Object obj2 : list) {
                         zeroToNullCore(obj2);
                     }
-                } else if (field.isAnnotationPresent(ZeroToNull.class)) {
+                } else if (field.isAnnotationPresent(Zero2Null.class)) {
                     if (type.equals(Integer.class)) {
                         field.setAccessible(true);
                         Integer val = (Integer) field.get(obj);

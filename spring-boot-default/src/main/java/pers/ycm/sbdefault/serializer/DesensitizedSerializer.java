@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.Objects;
 
 /**
+ * 数据脱敏序列化器
+ *
  * @author yuanchengman
  * @date 2021-01-25
  */

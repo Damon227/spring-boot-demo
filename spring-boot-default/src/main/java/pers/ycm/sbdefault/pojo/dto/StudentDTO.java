@@ -1,6 +1,7 @@
 package pers.ycm.sbdefault.pojo.dto;
 
 import pers.ycm.sbdefault.annotation.Desensitized;
+import pers.ycm.sbdefault.annotation.Zero2Null;
 import pers.ycm.sbdefault.common.enums.SensitiveTypeEnum;
 
 import java.util.List;
@@ -12,7 +13,8 @@ import java.util.List;
 public class StudentDTO {
     @Desensitized(type = SensitiveTypeEnum.CHINESE_NAME)
     private String name;
-    private int gender;
+    @Zero2Null
+    private Integer gender;
     private List<Book> books;
 
     public String getName() {
@@ -23,11 +25,11 @@ public class StudentDTO {
         this.name = name;
     }
 
-    public int getGender() {
+    public Integer getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(Integer gender) {
         this.gender = gender;
     }
 
