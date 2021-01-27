@@ -1,9 +1,13 @@
 package pers.ycm.sbdefault;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Test;
 import pers.ycm.sbdefault.desensitized.DesensitizedUtils;
+import pers.ycm.sbdefault.pojo.entity.User;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -48,5 +52,30 @@ public class StringTest {
     public void testCardNumber(){
         String cardNumber = "沪A983D4";
         System.out.println(DesensitizedUtils.carNumber(cardNumber));
+    }
+
+    @Test
+    public void testJSON(){
+        User user = new User();
+        user.setName("jack chen");
+        user.setBirthday(LocalDate.of(1993, 2, 27));
+        user.setCreateTime(LocalDateTime.now());
+
+        String json = JSON.toJSONString(user);
+        System.out.println(json);
+    }
+
+    @Test
+    public void testTime(){
+        LocalDateTime today_start = LocalDateTime.of(LocalDate.now(), LocalTime.MIN);
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        System.out.println(today_start);
+        System.out.println(df.format(today_start));
+
+        String s = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-01 00:00:01"));
+        LocalDateTime startTime = LocalDateTime.parse(s, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"))
+                .minusMonths(6);
+        System.out.println(startTime);
+        System.out.println(LocalDateTime.now());
     }
 }

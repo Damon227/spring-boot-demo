@@ -1,13 +1,14 @@
 package pers.ycm.sbdefault.aop;
 
-import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pers.ycm.sbdefault.service.UserService;
 
 import java.lang.reflect.Field;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -22,12 +23,15 @@ import java.util.Objects;
 @Component
 public class ModifyParamAspect {
 
+    @Autowired
+    private UserService userService;
+
     @Pointcut("@annotation(pers.ycm.sbdefault.aop.ModifyParamAop)")
     private void pointcut() {
     }
 
     @Before("pointcut() && @annotation(modifyParamAop)")
-    public void around(ProceedingJoinPoint joinPoint, ModifyParamAop modifyParamAop) {
+    public void before(JoinPoint joinPoint, ModifyParamAop modifyParamAop) {
         String[] fieldNames = modifyParamAop.fieldNames();
         // 返回被织入增强处理的目标对象       getThis：返回AOP框架为目标对象生成的代理对象
         Object target = joinPoint.getTarget();
@@ -98,11 +102,6 @@ public class ModifyParamAspect {
     }
 
     private Object getAfterValue(int index) {
-        LocalDateTime[] times = {
-                LocalDateTime.of(2020, 1, 1, 0, 0),
-                LocalDateTime.of(2021, 1, 1, 0, 0)
-        };
-
-        return times[index];
+        return userService.getUserCreateTime(index);
     }
 }
