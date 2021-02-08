@@ -1,7 +1,5 @@
 package pers.ycm.sbdefault.desensitized;
 
-import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import pers.ycm.sbdefault.common.enums.SensitiveTypeEnum;
 
 import java.lang.annotation.*;
@@ -16,8 +14,8 @@ import java.lang.annotation.*;
 @Inherited
 @Documented
 //若用fastjson，则不需要下面两个注解
-@JacksonAnnotationsInside
-@JsonSerialize(using = DesensitizedSerializer.class)
+//@JacksonAnnotationsInside
+//@JsonSerialize(using = DesensitizedSerializer.class)
 public @interface Desensitized {
     SensitiveTypeEnum type();
 }

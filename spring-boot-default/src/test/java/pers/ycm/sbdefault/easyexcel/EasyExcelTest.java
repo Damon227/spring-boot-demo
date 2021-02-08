@@ -34,4 +34,46 @@ public class EasyExcelTest {
         excelWriter.write(data, writeSheet);
         excelWriter.finish();
     }
+
+    /**
+     * 测试分批次写入同一文件
+     */
+    @Test
+    public void test2() {
+        String fileName = "demo.xlsx";
+
+        List<List<Object>> data = new ArrayList<>() {
+        };
+
+        data.add(ListUtil.of("name", "age", "money", 123));
+
+        ExcelWriter excelWriter = EasyExcel.write(fileName).build();
+        WriteSheet writeSheet = EasyExcel.writerSheet("sheet1").build();
+
+        int count = 1000000;
+        for (int i = 0; i < count; i++) {
+            excelWriter.write(data, writeSheet);
+        }
+
+        excelWriter.finish();
+    }
+
+    @Test
+    public void test3() {
+        String fileName = "demo.xlsx";
+
+        List<List<Object>> data = new ArrayList<>() {
+        };
+
+        ExcelWriter excelWriter = EasyExcel.write(fileName).build();
+        WriteSheet writeSheet = EasyExcel.writerSheet("sheet1").build();
+
+        int count = 1000000;
+        for (int i = 0; i < count; i++) {
+            data.add(ListUtil.of("name", "age", "money", 123));
+        }
+        excelWriter.write(data, writeSheet);
+
+        excelWriter.finish();
+    }
 }

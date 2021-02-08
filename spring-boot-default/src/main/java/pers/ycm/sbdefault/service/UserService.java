@@ -1,5 +1,6 @@
 package pers.ycm.sbdefault.service;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import pers.ycm.sbdefault.aop.ModifyParamAop;
 import pers.ycm.sbdefault.pojo.entity.User;
@@ -14,6 +15,7 @@ import java.util.List;
  * @date 2021-01-26
  */
 @Service
+@Scope("prototype")
 public class UserService {
 
     public User getCurrent() {

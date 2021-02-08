@@ -6,6 +6,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pers.ycm.sbdefault.pojo.entity.User;
 import pers.ycm.sbdefault.service.UserService;
 
 import java.lang.reflect.Field;
@@ -25,6 +26,8 @@ public class ModifyParamAspect {
 
     @Autowired
     private UserService userService;
+
+    private User user;
 
     @Pointcut("@annotation(pers.ycm.sbdefault.aop.ModifyParamAop)")
     private void pointcut() {
@@ -46,6 +49,8 @@ public class ModifyParamAspect {
 
             }
         }
+
+        System.out.println(this.hashCode());
     }
 
     private void changeValue(Object obj, String[] fieldNames) throws Exception {
@@ -102,6 +107,7 @@ public class ModifyParamAspect {
     }
 
     private Object getAfterValue(int index) {
+        user = userService.getCurrent();
         return userService.getUserCreateTime(index);
     }
 }

@@ -1,5 +1,6 @@
 package pers.ycm.sbdefault;
 
+import org.apache.commons.lang.NotImplementedException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -37,6 +38,15 @@ public class LogTest {
         int max = 10000;
         for (int i = 0; i < max; i++) {
             LOGGER.error("789");
+        }
+    }
+
+    @Test
+    public void testException(){
+        try {
+            throw new NotImplementedException();
+        } catch (NotImplementedException e) {
+            LOGGER.error("Exception", e);
         }
     }
 }

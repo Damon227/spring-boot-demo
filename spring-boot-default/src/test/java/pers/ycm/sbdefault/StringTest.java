@@ -1,6 +1,7 @@
 package pers.ycm.sbdefault;
 
 import com.alibaba.fastjson.JSON;
+import org.apache.commons.lang.NotImplementedException;
 import org.junit.Test;
 import pers.ycm.sbdefault.desensitized.DesensitizedUtils;
 import pers.ycm.sbdefault.pojo.entity.User;
@@ -77,5 +78,13 @@ public class StringTest {
                 .minusMonths(6);
         System.out.println(startTime);
         System.out.println(LocalDateTime.now());
+    }
+
+    @Test
+    public void testTime1(){
+        String s = "2021-02-03 23:59:59.000";
+        LocalDateTime parse = LocalDateTime.parse(s, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
+        parse = parse.plusNanos(999000000);
+        System.out.println(parse);
     }
 }

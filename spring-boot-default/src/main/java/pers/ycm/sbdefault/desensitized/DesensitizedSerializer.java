@@ -39,39 +39,7 @@ public class DesensitizedSerializer extends JsonSerializer<String> implements Co
 
     @Override
     public void serialize(String s, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException {
-        System.out.println(this.userService.getCurrent());
-        switch (this.typeEnum) {
-            case CHINESE_NAME: {
-                jsonGenerator.writeString(DesensitizedUtils.chineseName(s));
-                break;
-            }
-            case ID_CARD: {
-                jsonGenerator.writeString(DesensitizedUtils.idCardNum(s));
-                break;
-            }
-            case FIXED_PHONE: {
-                jsonGenerator.writeString(DesensitizedUtils.fixedPhone(s));
-                break;
-            }
-            case MOBILE_PHONE: {
-                jsonGenerator.writeString(DesensitizedUtils.mobilePhone(s));
-                break;
-            }
-            case ADDRESS: {
-                jsonGenerator.writeString(DesensitizedUtils.address(s, 4));
-                break;
-            }
-            case EMAIL: {
-                jsonGenerator.writeString(DesensitizedUtils.email(s));
-                break;
-            }
-            case BANK_CARD: {
-                jsonGenerator.writeString(DesensitizedUtils.bankCard(s));
-                break;
-            }
-            default:
-                break;
-        }
+        jsonGenerator.writeString(DesensitizedUtils.desensivize(this.typeEnum, s));
     }
 
     @Override

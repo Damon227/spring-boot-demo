@@ -23,4 +23,5 @@
 ### 数据脱敏
 #### 1. 用 fastjson ValueFilter
 #### 2. 用 jackson ContextualSerializer
+#### 3. 用 aop + 注解 修改方法返回值
 

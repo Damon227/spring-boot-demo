@@ -7,21 +7,27 @@
             <!--输出日志的格式-->
             <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
         </console>
-        <!--默认保存7个文件-->
-        <RollingFile name="CommonLog" fileName="/mnt/myapp/logs/common.log"
+        <RollingFile name="CommonLog" fileName="/mnt/myapp/logs/ycm/common.log"
                      filePattern="/mnt/myapp/logs/$${date:yyyy-MM}/common-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
-            <SizeBasedTriggeringPolicy size="10MB"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!--默认保存7个文件-->
+            <DefaultRolloverStrategy max="7"/>
             <Filters>
                 <!--不记录ERROR级别日志-->
                 <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
             </Filters>
         </RollingFile>
-        <!--默认保存7个文件-->
-        <RollingFile name="ErrorLog" fileName="/mnt/myapp/logs/error.log"
+        <RollingFile name="ErrorLog" fileName="/mnt/myapp/logs/ycm/error.log"
                      filePattern="/mnt/myapp/logs/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
-            <SizeBasedTriggeringPolicy size="10MB"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/>
+            </Policies>
+            <!--默认保存7个文件-->
+            <DefaultRolloverStrategy max="7"/>
             <Filters>
                 <!--只记录ERROR级别日志-->
                 <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>

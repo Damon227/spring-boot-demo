@@ -17,5 +17,5 @@ public @interface ModifyParamAop {
      *
      * @return string [ ]
      */
-    public String[] fieldNames();
+    String[] fieldNames();
 }

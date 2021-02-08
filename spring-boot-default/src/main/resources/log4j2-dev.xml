@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="warn" monitorInterval="30">
+    <properties>
+        <property name="logpath">/mnt/myapp/logs/ycm</property>
+    </properties>
     <!--先定义所有的appender-->
     <appenders>
         <!--这个输出控制台的配置-->
@@ -8,8 +11,8 @@
             <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
         </console>
         <!--默认保存7个文件-->
-        <RollingFile name="CommonLog" fileName="/mnt/myapp/logs/common.log"
-                     filePattern="/mnt/myapp/logs/$${date:yyyy-MM}/common-%d{yyyy-MM-dd}-%i.log.gz">
+        <RollingFile name="CommonLog" fileName="${logpath}/common.log"
+                     filePattern="${logpath}/$${date:yyyy-MM}/common-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
             <SizeBasedTriggeringPolicy size="10MB"/>
             <Filters>
@@ -18,8 +21,8 @@
             </Filters>
         </RollingFile>
         <!--默认保存7个文件-->
-        <RollingFile name="ErrorLog" fileName="/mnt/myapp/logs/error.log"
-                     filePattern="/mnt/myapp/logs/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log.gz">
+        <RollingFile name="ErrorLog" fileName="${logpath}/error.log"
+                     filePattern="${logpath}/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
             <SizeBasedTriggeringPolicy size="10MB"/>
             <Filters>

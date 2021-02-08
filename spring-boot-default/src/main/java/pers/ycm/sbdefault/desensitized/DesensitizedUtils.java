@@ -1,12 +1,42 @@
 package pers.ycm.sbdefault.desensitized;
 
 import org.apache.commons.lang.StringUtils;
+import pers.ycm.sbdefault.common.enums.SensitiveTypeEnum;
 
 /**
  * @author yuanchengman
  * @date 2021-01-25
  */
 public class DesensitizedUtils {
+
+    public static String desensivize(SensitiveTypeEnum type, String value) {
+        switch (type) {
+            case CHINESE_NAME: {
+                return DesensitizedUtils.chineseName(value);
+            }
+            case ID_CARD: {
+                return DesensitizedUtils.idCardNum(value);
+            }
+            case FIXED_PHONE: {
+                return DesensitizedUtils.fixedPhone(value);
+            }
+            case MOBILE_PHONE: {
+                return DesensitizedUtils.mobilePhone(value);
+            }
+            case ADDRESS: {
+                return DesensitizedUtils.address(value, 4);
+            }
+            case EMAIL: {
+                return DesensitizedUtils.email(value);
+            }
+            case BANK_CARD: {
+                return DesensitizedUtils.bankCard(value);
+            }
+            default:
+                return value;
+        }
+    }
+
     /**
      * 【中文姓名】只显示第一个汉字，其他隐藏为2个星号，比如：李**
      *
@@ -31,7 +61,7 @@ public class DesensitizedUtils {
         if (StringUtils.isBlank(id)) {
             return "";
         }
-        if(StringUtils.length(id) <= 7){
+        if (StringUtils.length(id) <= 7) {
             return id;
         }
         return StringUtils.left(id, 3).concat(StringUtils.removeStart(StringUtils.leftPad(StringUtils.right(id, 4), StringUtils.length(id), "*"), "***"));

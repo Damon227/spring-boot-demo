@@ -36,13 +36,13 @@ public class Zero2NullSerializer extends JsonSerializer<Object> implements Conte
                     || Objects.equals(beanProperty.getType().getRawClass(), Double.class)
                     || Objects.equals(beanProperty.getType().getRawClass(), BigDecimal.class)
             ) {
-                Zero2Null desensitized = beanProperty.getAnnotation(Zero2Null.class);
-                if (desensitized == null) {
-                    desensitized = beanProperty.getContextAnnotation(Zero2Null.class);
+                Zero2Null zero2Null = beanProperty.getAnnotation(Zero2Null.class);
+                if (zero2Null == null) {
+                    zero2Null = beanProperty.getContextAnnotation(Zero2Null.class);
                 }
 
                 // 如果能得到注解，就将注解的 value 传入 SensitiveInfoSerialize
-                if (desensitized != null) {
+                if (zero2Null != null) {
                     return new Zero2NullSerializer();
                 }
             }

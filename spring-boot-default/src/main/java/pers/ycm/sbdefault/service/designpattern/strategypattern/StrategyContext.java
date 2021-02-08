@@ -2,6 +2,7 @@ package pers.ycm.sbdefault.service.designpattern.strategypattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import pers.ycm.sbdefault.common.exception.BizException;
 import pers.ycm.sbdefault.common.enums.CodeEnum;
 
@@ -18,7 +19,7 @@ public class StrategyContext {
     private Map<String, Strategy> context;
 
     public Strategy getInstance(String strategyName) {
-        if (context == null || context.size() == 0) {
+        if (CollectionUtils.isEmpty(context)) {
             throw new BizException(CodeEnum.BIZ_STRATEGY_EMPTY);
         }
 
