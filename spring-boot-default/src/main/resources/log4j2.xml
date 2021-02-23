@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="warn" monitorInterval="30">
     <properties>
-        <property name="LOG_HOME">logs</property>
+        <property name="LOG_HOME">mnt/myapp</property>
     </properties>
     <!--先定义所有的appender-->
     <appenders>
@@ -10,8 +10,8 @@
             <!--输出日志的格式-->
             <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
         </console>
-        <RollingFile name="CommonLog" fileName="${LOG_HOME}logs/app.log"
-                     filePattern="${LOG_HOME}logs/app-%d{yyyy-MM-dd}-%i.log.gz">
+        <RollingFile name="CommonLog" fileName="${LOG_HOME}/logs/app.log"
+                     filePattern="${LOG_HOME}/logs/app-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
@@ -23,15 +23,15 @@
             </Filters>
             <!--每天保存30个文件-->
             <DefaultRolloverStrategy max="30">
-                <Delete basePath="${LOG_HOME}logs/" maxDepth="2">
+                <Delete basePath="${LOG_HOME}/logs/" maxDepth="2">
                     <IfFileName glob="*.gz"/>
                     <!--7天-->
                     <IfLastModified age="7d"/>
                 </Delete>
             </DefaultRolloverStrategy>
         </RollingFile>
-        <RollingFile name="ErrorLog" fileName="${LOG_HOME}logs/error.log"
-                     filePattern="${LOG_HOME}logs/error-%d{yyyy-MM-dd}-%i.log.gz">
+        <RollingFile name="ErrorLog" fileName="${LOG_HOME}/logs/error.log"
+                     filePattern="${LOG_HOME}/logs/error-%d{yyyy-MM-dd}-%i.log.gz">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
             <SizeBasedTriggeringPolicy size="50MB"/>
             <Filters>
@@ -40,7 +40,7 @@
             </Filters>
             <!--每天保存30个文件-->
             <DefaultRolloverStrategy max="30">
-                <Delete basePath="${LOG_HOME}logs/" maxDepth="2">
+                <Delete basePath="${LOG_HOME}/logs/" maxDepth="2">
                     <IfFileName glob="*.gz"/>
                     <!--7天-->
                     <IfLastModified age="7d"/>
