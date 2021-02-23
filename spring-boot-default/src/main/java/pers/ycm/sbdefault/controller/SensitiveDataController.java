@@ -1,10 +1,9 @@
 package pers.ycm.sbdefault.controller;
 
 import cn.hutool.core.collection.ListUtil;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pers.ycm.sbdefault.aop.ModifyReturnAop;
 import pers.ycm.sbdefault.pojo.dto.Book;
 import pers.ycm.sbdefault.pojo.dto.StudentDTO;
@@ -28,6 +27,11 @@ public class SensitiveDataController {
         StudentDTO dto = self.getStudentDTO();
 
         return dto;
+    }
+
+    @PostMapping("/test")
+    public void test(@RequestBody StudentDTO request){
+        System.out.println(JSON.toJSONString(request));
     }
 
     public StudentDTO getStudentDTO(){

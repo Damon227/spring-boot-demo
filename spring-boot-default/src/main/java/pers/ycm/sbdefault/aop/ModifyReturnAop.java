@@ -13,4 +13,5 @@ import java.lang.annotation.*;
 @Inherited
 @Documented
 public @interface ModifyReturnAop {
+    int type() default 0;
 }

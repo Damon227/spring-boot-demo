@@ -25,8 +25,8 @@ public class ModifyReturnAspect {
     private void pointcut() {
     }
 
-    @AfterReturning(value = "pointcut()", returning = "returnValue")
-    public void after(JoinPoint joinPoint, Object returnValue) {
+    @AfterReturning(value = "pointcut() && @annotation(modifyReturnAop)", returning = "returnValue")
+    public void after(JoinPoint joinPoint, Object returnValue, ModifyReturnAop modifyReturnAop) {
         try {
             changeValue(returnValue);
         } catch (Exception e) {

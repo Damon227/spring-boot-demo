@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="warn" monitorInterval="30">
     <properties>
-        <property name="logpath">/mnt/myapp/logs/ycm</property>
+        <property name="LOG_HOME">logs</property>
     </properties>
     <!--先定义所有的appender-->
     <appenders>
@@ -10,48 +10,43 @@
             <!--输出日志的格式-->
             <PatternLayout pattern="[%d{yyyy-MM-dd HH:mm:ss:SSS}] [%p] - %l - %m%n"/>
         </console>
-        <!--默认保存7个文件-->
-        <RollingFile name="CommonLog" fileName="${logpath}/common.log"
-                     filePattern="${logpath}/$${date:yyyy-MM}/common-%d{yyyy-MM-dd}-%i.log.gz">
-            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
-            <SizeBasedTriggeringPolicy size="10MB"/>
+        <RollingFile name="CommonLog" fileName="${LOG_HOME}logs/app.log"
+                     filePattern="${LOG_HOME}logs/app-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1" modulate="true"/>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
             <Filters>
                 <!--不记录ERROR级别日志-->
                 <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
             </Filters>
+            <!--每天保存30个文件-->
+            <DefaultRolloverStrategy max="30">
+                <Delete basePath="${LOG_HOME}logs/" maxDepth="2">
+                    <IfFileName glob="*.gz"/>
+                    <!--7天-->
+                    <IfLastModified age="7d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
         </RollingFile>
-        <!--默认保存7个文件-->
-        <RollingFile name="ErrorLog" fileName="${logpath}/error.log"
-                     filePattern="${logpath}/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log.gz">
-            <PatternLayout pattern="%d{yyyy-MM-dd 'at' HH:mm:ss z} %-5level %class{36} %L %M - %msg%xEx%n"/>
-            <SizeBasedTriggeringPolicy size="10MB"/>
+        <RollingFile name="ErrorLog" fileName="${LOG_HOME}logs/error.log"
+                     filePattern="${LOG_HOME}logs/error-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %class{36} %L %M - %msg%xEx%n"/>
+            <SizeBasedTriggeringPolicy size="50MB"/>
             <Filters>
                 <!--只记录ERROR级别日志-->
                 <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             </Filters>
+            <!--每天保存30个文件-->
+            <DefaultRolloverStrategy max="30">
+                <Delete basePath="${LOG_HOME}logs/" maxDepth="2">
+                    <IfFileName glob="*.gz"/>
+                    <!--7天-->
+                    <IfLastModified age="7d"/>
+                </Delete>
+            </DefaultRolloverStrategy>
         </RollingFile>
-<!--        <JDBC name="DBAppender" tableName="error_log_crm_risk_mp">-->
-<!--            <ConnectionFactory-->
-<!--                    class="com.jdd.mallcoo.risk.control.common.log.ConnectionFactory"-->
-<!--                    method="getDatabaseConnection" />-->
-<!--            &lt;!&ndash; 方法名 &ndash;&gt;-->
-<!--            <Column name="log_function" pattern="%M" />-->
-<!--            <Column name="log_line" pattern="%line" />-->
-<!--            <Column name="log_thread" pattern="%thread" />-->
-<!--            &lt;!&ndash; 日志级别 &ndash;&gt;-->
-<!--            <Column name="log_level" pattern="%level" />-->
-<!--            &lt;!&ndash; 类 &ndash;&gt;-->
-<!--            <Column name="log_class" pattern="%c" />-->
-<!--            &lt;!&ndash; 日志内容 &ndash;&gt;-->
-<!--            <Column name="log_message" pattern="%message" />-->
-<!--            &lt;!&ndash; 日志异常 &ndash;&gt;-->
-<!--            <Column name="log_ex" pattern="%ex" />-->
-<!--            &lt;!&ndash; 时间 &ndash;&gt;-->
-<!--            <Column name="create_date" pattern="%d{yyyy-MM-dd hh:mm:ss}" />-->
-<!--        </JDBC>-->
-<!--        <Async name="Async">-->
-<!--            <AppenderRef ref="DBAppender"/>-->
-<!--        </Async>-->
     </appenders>
 
     <loggers>
@@ -59,7 +54,6 @@
             <appender-ref ref="Console"/>
             <appender-ref ref="CommonLog"/>
             <appender-ref ref="ErrorLog"/>
-<!--            <appender-ref ref="Async" level="ERROR"/>-->
         </root>
     </loggers>
 </configuration>

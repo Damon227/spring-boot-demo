@@ -1,17 +1,25 @@
 package pers.ycm.sbdefault;
 
 import com.alibaba.fastjson.JSON;
-import org.apache.commons.lang.NotImplementedException;
 import org.junit.Test;
 import pers.ycm.sbdefault.desensitized.DesensitizedUtils;
+import pers.ycm.sbdefault.pojo.dto.StudentDTO;
 import pers.ycm.sbdefault.pojo.entity.User;
 
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * @author yuanchengman
@@ -51,7 +59,7 @@ public class StringTest {
 
     @Test
     public void testCardNumber(){
-        String cardNumber = "沪A983D4";
+        String cardNumber = "沪A9823";
         System.out.println(DesensitizedUtils.carNumber(cardNumber));
     }
 
@@ -86,5 +94,32 @@ public class StringTest {
         LocalDateTime parse = LocalDateTime.parse(s, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS"));
         parse = parse.plusNanos(999000000);
         System.out.println(parse);
+    }
+
+    @Test
+    public void test2()  {
+        String format = MessageFormat.format("''{0}'',{1}", 11, 22);
+        System.out.println(format);
+    }
+
+    @Test
+    public void test3(){
+        List<StudentDTO> list = new ArrayList<>();
+        //list.add(new StudentDTO("1"));
+        //list.add(new StudentDTO("2"));
+        //list.add(new StudentDTO("3"));
+        String s = list.stream().map(t -> t.getName()).collect(Collectors.joining(","));
+        System.out.println(s);
+        List<Long> collect = Arrays.stream(s.split(",")).distinct().map(t -> Long.parseLong(t.trim())).collect(Collectors.toList());
+        System.out.println(collect);
+    }
+
+    @Test
+    public void test4(){
+        String s = "g天没可ol83s";
+        String encode = URLEncoder.encode(s, StandardCharsets.UTF_8);
+        System.out.println(encode);
+        String decode = URLDecoder.decode(encode, StandardCharsets.UTF_8);
+        System.out.println(decode);
     }
 }

@@ -18,4 +18,11 @@ public class StudentDTO {
     @Zero2Null
     private Integer gender;
     private List<Book> books;
+
+    public StudentDTO() {
+    }
+
+    public StudentDTO(String name) {
+        this.name = name;
+    }
 }

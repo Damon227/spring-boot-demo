@@ -35,7 +35,7 @@ public class LogTest {
 
     @Test
     public void testBatchError(){
-        int max = 10000;
+        int max = 1000000;
         for (int i = 0; i < max; i++) {
             LOGGER.error("789");
         }

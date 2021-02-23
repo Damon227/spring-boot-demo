@@ -10,8 +10,6 @@ import java.util.Objects;
  * @date 2021-01-11
  */
 public interface CommonEnum {
-
-
     /**
      * 获取枚举值
      *
@@ -26,20 +24,6 @@ public interface CommonEnum {
      */
     String getDesc();
 
-    /**
-     * 通过枚举值获取枚举
-     *
-     * @param code  枚举值
-     * @param clazz
-     * @param <E>
-     * @return
-     */
-    static <E extends Enum<E> & CommonEnum> E getEnum(Integer code, Class<E> clazz) {
-        Objects.requireNonNull(code);
-        EnumSet<E> allEnums = EnumSet.allOf(clazz);
-        E myEnum = allEnums.stream().filter(t -> t.getCode() == code).findFirst().orElseThrow();
-        return myEnum;
-    }
 
     /**
      * 通过枚举值获取枚举
