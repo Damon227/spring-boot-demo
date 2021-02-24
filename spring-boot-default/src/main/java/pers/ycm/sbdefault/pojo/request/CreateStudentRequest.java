@@ -25,4 +25,6 @@ public class CreateStudentRequest {
     private Integer age;
 
     private String mobile;
+
+    private String address;
 }
