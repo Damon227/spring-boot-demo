@@ -15,26 +15,28 @@ import java.util.List;
 
 /**
  * @author yuanchengman
- * @date 2021-02-25
+ * @date 2021-02-24
  */
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = {"pers.ycm.sbdefault.controller"})
 public class GlobalExceptionHandler {
-    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+    private static Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Object methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
-        logger.error("ValidateErr", e);
-        // 从异常对象中拿到ObjectError对象
+        LOGGER.error("ValidateErr", e);
+
         BindingResult result = e.getBindingResult();
+
         List<String> list = new LinkedList<>();
         result.getFieldErrors().forEach(error -> {
             String field = error.getField();
-            //Object value = error.getRejectedValue();
+            Object value = error.getRejectedValue();
             String msg = error.getDefaultMessage();
-            list.add(String.format("%s %s", field, msg));
+            list.add(field + " " + msg);
         });
+
         // 然后提取错误提示信息进行返回
-        ResultVO bizResult = new ResultVO<>(CodeEnum.SYSTEM_PARAM_ERROR.getCode(), StringUtils.join(list, ","));
+        ResultVO bizResult = new ResultVO(CodeEnum.SYSTEM_PARAM_ERROR.getCode(), StringUtils.join(list, ","));
         return new ResultVO<>(bizResult);
     }
 }

@@ -5,20 +5,24 @@ import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
 import javax.validation.constraints.NotBlank;
-import java.math.BigDecimal;
 
 /**
  * @author yuanchengman
- * @date 2021-02-25
+ * @date 2021-02-24
  */
 @Data
 public class CreateStudentRequest {
+    /**
+     * 姓名
+     */
     @NotBlank
     @Length(max = 8)
     private String name;
+    /**
+     * 年龄
+     */
+    @Range(min = 10)
+    private Integer age;
 
-    @Range(max = 120)
-    private int age;
-
-    private BigDecimal money;
+    private String mobile;
 }
