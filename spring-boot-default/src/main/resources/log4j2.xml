@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration status="warn" monitorInterval="30">
     <properties>
-        <property name="LOG_HOME">mnt/myapp</property>
+        <property name="LOG_HOME"></property>
     </properties>
     <!--先定义所有的appender-->
     <appenders>
