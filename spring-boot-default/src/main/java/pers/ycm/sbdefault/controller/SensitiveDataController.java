@@ -40,7 +40,7 @@ public class SensitiveDataController {
         student.setName("失也好二");
         student.setBooks(ListUtil.of(
                 new Book("语文", BigDecimal.valueOf(11)),
-                new Book("英语", BigDecimal.valueOf(12))));
+                new Book("英语", BigDecimal.valueOf(13))));
         return student;
     }
 }
