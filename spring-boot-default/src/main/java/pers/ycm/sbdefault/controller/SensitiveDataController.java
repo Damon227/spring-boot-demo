@@ -44,6 +44,7 @@ public class SensitiveDataController {
     public void test(@RequestBody StudentDTO request){
         System.out.println(JSON.toJSONString(request));
         //dev11
+        //dev12
     }
 
     @PostMapping("/create")
