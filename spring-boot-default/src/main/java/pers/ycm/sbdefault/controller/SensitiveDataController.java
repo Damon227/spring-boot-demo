@@ -55,4 +55,9 @@ public class SensitiveDataController {
                 new Book("英语master", BigDecimal.valueOf(13))));
         return student;
     }
+
+    @PostMapping("/create")
+    public StudentDTO create(@RequestBody @Validated CreateStudentRequest request){
+        return self.getStudentDTO();
+    }
 }
