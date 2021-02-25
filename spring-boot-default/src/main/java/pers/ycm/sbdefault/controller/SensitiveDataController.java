@@ -3,10 +3,12 @@ package pers.ycm.sbdefault.controller;
 import cn.hutool.core.collection.ListUtil;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pers.ycm.sbdefault.aop.ModifyReturnAop;
 import pers.ycm.sbdefault.pojo.dto.Book;
 import pers.ycm.sbdefault.pojo.dto.StudentDTO;
+import pers.ycm.sbdefault.pojo.request.CreateStudentRequest;
 
 import java.math.BigDecimal;
 
@@ -27,6 +29,7 @@ public class SensitiveDataController {
         StudentDTO dto = self.getStudentDTO();
         // master 1
         // master 2
+        // master 3
         return dto;
     }
 
@@ -34,6 +37,11 @@ public class SensitiveDataController {
     public void test(@RequestBody StudentDTO request){
         System.out.println(JSON.toJSONString(request));
         
+    }
+
+    @PostMapping("/create")
+    public StudentDTO create(@RequestBody @Validated CreateStudentRequest request){
+        return self.getStudentDTO();
     }
 
     public StudentDTO getStudentDTO(){
