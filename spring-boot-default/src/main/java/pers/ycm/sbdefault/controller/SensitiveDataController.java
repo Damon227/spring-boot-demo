@@ -2,7 +2,6 @@ package pers.ycm.sbdefault.controller;
 
 import cn.hutool.core.collection.ListUtil;
 import com.alibaba.fastjson.JSON;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import pers.ycm.sbdefault.aop.ModifyReturnAop;
@@ -10,6 +9,7 @@ import pers.ycm.sbdefault.pojo.dto.Book;
 import pers.ycm.sbdefault.pojo.dto.StudentDTO;
 import pers.ycm.sbdefault.pojo.request.CreateStudentRequest;
 
+import javax.annotation.Resource;
 import java.math.BigDecimal;
 
 /**
@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 @RequestMapping("/sensitivedata")
 public class SensitiveDataController {
 
-    @Autowired
+    @Resource
     private SensitiveDataController self;
 
     @GetMapping("/get")

@@ -1,5 +1,6 @@
 package pers.ycm.sbdefault;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @SpringBootApplication(scanBasePackages = {"pers.ycm.*"})
 @ServletComponentScan(basePackages = "pers.ycm.")
 @EnableAspectJAutoProxy(proxyTargetClass = true)
+@MapperScan("pers.ycm.*")
 public class ServiceInitializer {
     public static void main(String[] args) {
         SpringApplication.run(ServiceInitializer.class, args);
