@@ -121,5 +121,7 @@ public class StringTest {
         System.out.println(encode);
         String decode = URLDecoder.decode(encode, StandardCharsets.UTF_8);
         System.out.println(decode);
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHMMss")));
+        System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
     }
 }
