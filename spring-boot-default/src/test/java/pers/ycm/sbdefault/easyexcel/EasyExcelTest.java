@@ -40,7 +40,7 @@ public class EasyExcelTest {
      */
     @Test
     public void test2() {
-        String fileName = "demo.xlsx";
+        String fileName = "target/demo.xlsx";
 
         List<List<Object>> data = new ArrayList<>() {
         };
@@ -50,7 +50,7 @@ public class EasyExcelTest {
         ExcelWriter excelWriter = EasyExcel.write(fileName).build();
         WriteSheet writeSheet = EasyExcel.writerSheet("sheet1").build();
 
-        int count = 1000000;
+        int count = 100;
         for (int i = 0; i < count; i++) {
             excelWriter.write(data, writeSheet);
         }
@@ -60,15 +60,22 @@ public class EasyExcelTest {
 
     @Test
     public void test3() {
-        String fileName = "demo.xlsx";
+        String fileName = "target/demo.xlsx";
 
         List<List<Object>> data = new ArrayList<>() {
         };
 
-        ExcelWriter excelWriter = EasyExcel.write(fileName).build();
-        WriteSheet writeSheet = EasyExcel.writerSheet("sheet1").build();
+        // 自定义表头
+        List<List<String>> headers = new ArrayList<>();
+        headers.add(ListUtil.of("姓名"));
+        headers.add(ListUtil.of("年龄"));
+        headers.add(ListUtil.of("存款"));
+        headers.add(ListUtil.of("数字"));
 
-        int count = 1000000;
+        ExcelWriter excelWriter = EasyExcel.write(fileName).build();
+        WriteSheet writeSheet = EasyExcel.writerSheet("sheet1").head(headers).build();
+
+        int count = 100;
         for (int i = 0; i < count; i++) {
             data.add(ListUtil.of("name", "age", "money", 123));
         }
