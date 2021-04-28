@@ -1,6 +1,10 @@
 package pers.ycm.sbdefault;
 
+import cn.hutool.core.collection.ListUtil;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author yuanchengman
@@ -20,5 +24,13 @@ public class ArrayTest {
         System.out.println(array.length);
         System.out.println(array[3]);
         System.out.println(array[4]);
+    }
+
+    @Test
+    public void test2(){
+        List<Integer> list1 = ListUtil.of(1,2,3,4);
+        List<Integer> list2 = new ArrayList<>(list1);
+        list2.set(0, 11);
+        System.out.println("");
     }
 }

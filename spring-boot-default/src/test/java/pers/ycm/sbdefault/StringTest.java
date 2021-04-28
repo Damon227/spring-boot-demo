@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
  * @date 2021-01-12
  */
 public class StringTest {
+
     @Test
     public void stringTest1(){
         Pattern pattern = Pattern.compile("[0-9]{4}[-][0-9]{1,2}[-][0-9]{1,2}[ ][0-9]{1,2}[:][0-9]{1,2}[:][0-9]{1,2}");
@@ -116,12 +117,18 @@ public class StringTest {
 
     @Test
     public void test4(){
-        String s = "g天没可ol83s";
-        String encode = URLEncoder.encode(s, StandardCharsets.UTF_8);
+        String s = "无时间条件范围消费金额大于等于1";
+        String encode = s == null ? null : URLEncoder.encode(s, StandardCharsets.UTF_8);
         System.out.println(encode);
         String decode = URLDecoder.decode(encode, StandardCharsets.UTF_8);
         System.out.println(decode);
         System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHMMss")));
         System.out.println(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss")));
+    }
+
+    @Test
+    public void test5(){
+        int num = Integer.parseInt(String.format("%d01", 325));
+        System.out.println(num);
     }
 }

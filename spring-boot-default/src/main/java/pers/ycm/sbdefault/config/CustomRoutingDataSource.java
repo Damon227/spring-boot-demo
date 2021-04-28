@@ -15,7 +15,7 @@ import java.util.Map;
  * @date 2021-03-09
  */
 @Component
-public class CustomRoutingDataSource  extends AbstractRoutingDataSource {
+public class CustomRoutingDataSource extends AbstractRoutingDataSource {
 
     @Resource(name = "writeDataSourceProperties")
     private DataSourceProperties writeProperties;
