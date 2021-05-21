@@ -11,6 +11,7 @@ import pers.ycm.sbdefault.pojo.request.CreateStudentRequest;
 
 import javax.annotation.Resource;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /**
  * @author yuanchengman
@@ -60,8 +61,8 @@ public class SensitiveDataController {
         StudentDTO student = new StudentDTO();
         student.setName("失也好二");
         student.setBooks(ListUtil.of(
-                new Book("语文", BigDecimal.valueOf(11)),
-                new Book("英语master", BigDecimal.valueOf(13))));
+                new Book("语文", BigDecimal.valueOf(11), LocalDateTime.now()),
+                new Book("英语master", BigDecimal.valueOf(13), LocalDateTime.now())));
         return student;
     }
 }

@@ -1,8 +1,13 @@
 package pers.ycm.sbdefault;
 
+import cn.hutool.json.JSONObject;
 import com.alibaba.fastjson.JSON;
 import org.junit.Test;
+import pers.ycm.sbdefault.common.utils.JsonUtil;
+import pers.ycm.sbdefault.common.utils.ModelConvertUtil;
 import pers.ycm.sbdefault.desensitized.DesensitizedUtils;
+import pers.ycm.sbdefault.model.DemoEntity;
+import pers.ycm.sbdefault.model.DemoModel;
 import pers.ycm.sbdefault.pojo.dto.StudentDTO;
 import pers.ycm.sbdefault.pojo.entity.User;
 
@@ -14,9 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -130,5 +133,41 @@ public class StringTest {
     public void test5(){
         int num = Integer.parseInt(String.format("%d01", 325));
         System.out.println(num);
+    }
+
+    @Test
+    public void test6(){
+        String value = "{\"provinceId\":310000,\"cityId\":310100,\"districtsId\":310105,\"province\":\"上海\",\"city\":\"上海市\",\"districts\":\"长宁区\"}";
+        StringBuilder stringBuilder = new StringBuilder();
+        JSONObject jsonObj = new JSONObject(value);
+        String province = jsonObj.get("province", String.class);
+        stringBuilder.append(province);
+        String city = jsonObj.get("city", String.class);
+        stringBuilder.append(city);
+        String districts = jsonObj.get("districts", String.class);
+        stringBuilder.append(districts);
+        System.out.println(stringBuilder.toString());
+    }
+
+    @Test
+    public void test7(){
+        DemoEntity originModel = new DemoEntity();
+        originModel.setId(0L);
+        originModel.setName("rose");
+
+        DemoModel model = ModelConvertUtil.toModel(originModel, DemoModel.class);
+        DemoModel model2 = new DemoModel();
+        ModelConvertUtil.toModel(originModel, model2);
+        System.out.println(model.getCreateTime());
+    }
+
+    @Test
+    public void test8(){
+        Map map = new HashMap();
+        map.put("id", 1);
+        map.put("name", "李浩");
+
+        String str = JsonUtil.obj2String(map);
+        System.out.println(str);
     }
 }
